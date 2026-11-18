@@ -1,0 +1,38 @@
+flowchart TB
+  subgraph L3["第 3 层"]
+    env["env"]
+    ca["coding-agent"]
+  end
+  subgraph L2["第 2 层"]
+    durable["durable"]
+    agent["agent"]
+  end
+  subgraph L1["第 1 层"]
+    chord["chord"]
+    ai["ai"]
+  end
+  subgraph L0["第 0 层"]
+    telemetry["telemetry"]
+    schema["schema"]
+    tui["tui"]
+    codemode["codemode"]
+    mcp["mcp"]
+  end
+  chord --> schema
+  chord --> telemetry
+  ai --> schema
+  ai --> telemetry
+  durable --> chord
+  durable --> ai
+  durable --> codemode
+  durable --> schema
+  durable --> telemetry
+  env --> chord
+  env --> durable
+  agent --> ai
+  agent -. 类型 .-> schema
+  ca --> agent
+  ca --> ai
+  ca --> tui
+  ca --> codemode
+  ca --> mcp
