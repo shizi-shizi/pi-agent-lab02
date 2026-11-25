@@ -17,7 +17,7 @@ console.error("[P4] Agent 即将请求模型");
 const response = await streamFunction(config.model, llmContext, {
 ```
 
-源码已经按实验要求修改，并已提交到小组仓库 `main` 分支，提交号为 `b13deeda1`；本次个人仓库提交包含报告和本实验有效截图。
+源码已经按实验要求修改，并已提交到小组仓库 `main` 分支，提交号为 `b13deeda1`；
 
 S1：编辑器中的模型请求日志位置。
 
@@ -117,5 +117,3 @@ flowchart LR
 ```
 
 结合这次 B 的记录，模型先提出读取文件所需的工具调用；`read` 工具在本机读取文件并把结果交还 Agent；Agent 把结果追加到上下文后再次请求模型；远程模型服务根据新增的工具结果生成最终回复。
-
-S1–S6 的原始截图均已保存到报告仓库；A、B 实验截图均显示 `deepseek-flash`。
