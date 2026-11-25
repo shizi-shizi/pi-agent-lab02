@@ -19,11 +19,29 @@ const response = await streamFunction(config.model, llmContext, {
 
 源码已经按实验要求修改，并已提交到小组仓库 `main` 分支，提交号为 `b13deeda1`；本次个人仓库提交包含报告和本实验有效截图。
 
+S1：编辑器中的模型请求日志位置。
+
+![编辑器中的 agent-loop.ts、文件名、行号和模型请求日志](practice4-s1-editor.png)
+
+S2：工具结果加入上下文后的位置。
+
+![编辑器中的工具结果循环和工具结果日志](practice4-s2-tool-result.png)
+
 ## 2. 重新编译
 
 我在源码仓库根目录运行了 `npm run build`。第一次构建在 `packages/ai` 更新模型目录时，因为连接 `models.dev` 失败而退出，退出码为 `1`。之后重试和本次重新核验时，同一条构建命令都成功完成，最终输出 `Built packages\coding-agent\dist\bundle (84 files, 9.4 MiB)`，本次退出码为 `0`。构建日志中有 npm 对 `min-release-age-exclude` 的配置警告，但没有影响构建完成。
 
 我随后运行 `node .\packages\coding-agent\dist\cli.js --version`，得到 `1.5.2`，退出码为 `0`。
+
+S3：重新编译及退出码。
+
+![S3a：源码仓库中运行 npm run build](practice4-s3a-build.png)
+
+![S3b：构建成功并显示退出码 0](practice4-s3b-exit-code.png)
+
+S4：启动命令与 Pi 界面。
+
+![同一终端画面中的 PowerShell 启动命令历史和已启动的 Pi 界面](practice4-s4-command-and-ui.png)
 
 ## 3. 实验模型和代号文件
 
@@ -53,6 +71,10 @@ Pi 的实际回复是：
 
 本次没有工具结果日志，说明这条指令由模型直接回答，没有调用文件读取工具。按“即将请求模型”日志计，共进入 1 轮模型调用。
 
+S5：会话 A 的实际输入、回复和模型请求日志。
+
+![会话 A 的输入、Pi 回复及模型请求日志](practice4-s5-chat.png)
+
 ## 5. 会话 B：读取文件
 
 输入给 Pi 的指令：
@@ -73,6 +95,10 @@ Pi 的实际回复为：
 
 这次先有一次模型请求，随后出现工具结果已加入上下文的日志，再发起第二次模型请求，共 2 轮模型调用。实际读取文件的是 Pi 的 `read` 工具，不是远程模型服务直接读取我的电脑。工具读取到文件后，Agent 将工具结果加入 `currentContext.messages`；下一轮请求因此带上了此前对话和文件读取工具返回的内容，模型才能据此给出代号。
 
+S6：会话 B 的实际输入、read 工具记录、实验代号和两类日志。
+
+![会话 B 的 read 工具记录、实验代号及 P4 日志](practice4-s6-tool.png)
+
 ## 6. 运行流程
 
 ```mermaid
@@ -92,32 +118,4 @@ flowchart LR
 
 结合这次 B 的记录，模型先提出读取文件所需的工具调用；`read` 工具在本机读取文件并把结果交还 Agent；Agent 把结果追加到上下文后再次请求模型；远程模型服务根据新增的工具结果生成最终回复。
 
-## 7. 截图证据
-
-### S1：模型请求日志位置
-
-![agent-loop.ts 中模型请求日志及其下方的 streamFunction 调用](practice4-s1-model-request.png)
-
-### S2：工具结果日志位置
-
-![agent-loop.ts 中工具结果写入上下文后记录日志](practice4-s2-tool-result.png)
-
-### S3：重新构建及退出码
-
-![S3a：源码仓库中运行 npm run build](practice4-s3a-build.png)
-
-![S3b：构建成功并显示退出码 0](practice4-s3b-exit-code.png)
-
-### S4：启动命令与 Pi 界面
-
-![同一终端画面中的 PowerShell 启动命令历史和已启动的 Pi 界面](practice4-s4-command-and-ui.png)
-
-### S5：直接问答
-
-![会话 A 的输入、Pi 回复及模型请求日志](practice4-s5-chat.png)
-
-### S6：读取文件
-
-![会话 B 的 read 工具记录、实验代号及 P4 日志](practice4-s6-tool.png)
-
-S1–S6 的原始截图均已保存到报告仓库。S4 同一终端画面同时显示实际启动命令历史和成功启动的 Pi 界面；A、B 实验截图均显示 `deepseek-flash`。
+S1–S6 的原始截图均已保存到报告仓库；A、B 实验截图均显示 `deepseek-flash`。
