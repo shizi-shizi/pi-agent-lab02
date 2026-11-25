@@ -17,7 +17,7 @@ console.error("[P4] Agent 即将请求模型");
 const response = await streamFunction(config.model, llmContext, {
 ```
 
-源码已经按实验要求修改。当前本地源码仓库保留这两处未提交改动；本次提交范围是个人报告和本实验有效截图。
+源码已经按实验要求修改，并已提交到小组仓库 `main` 分支，提交号为 `b13deeda1`；本次个人仓库提交包含报告和本实验有效截图。
 
 ## 2. 重新编译
 
