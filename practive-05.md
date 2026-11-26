@@ -10,10 +10,7 @@
 | --- | --- |
 | 小组源码仓库 | [shizishizi111/pi-hunnu-2026](https://github.com/shizishizi111/pi-hunnu-2026) |
 | 源码版本 | [`b13deeda133d97a8c5fd70b42e5c72960a1e174b`](https://github.com/shizishizi111/pi-hunnu-2026/tree/b13deeda133d97a8c5fd70b42e5c72960a1e174b) |
-| 工作目录 | `D:\CodexProject\Pi-Agent-Lab02\pi-hunnu-2026` |
 | 启动程序 | 本地已构建的 `packages/coding-agent/dist/cli.js`，版本 `1.5.2` |
-| 模型 | 三个阶段均为 `deepseek/deepseek-flash`，thinking 为 `high` |
-| 会话目录 | `D:\CodexProject\Pi-Agent-Lab02\practice5-private-sessions` |
 
 实验沿用实践 4 构建的程序和添加的 `[P4]` 日志，没有重新构建或修改业务源码。我单独设置了 `--session-dir`，方便恢复时找到这次的会话。退出再启动时，工作目录、模型、工具配置和会话目录都保持一致。
 
